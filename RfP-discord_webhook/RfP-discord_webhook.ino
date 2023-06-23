@@ -40,7 +40,7 @@ void setup() {
   discord.send("If you're 555, I'm 666:love_you_gesture::fire:"); // Pošli zprávu o zapnutí
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);  //Nastav NTP server
   printLocalTime();
-  Cron.create("0 0 10 ? * * *", RfP, false);  //Každý den ve 12h zavolej funkci RfP
+  Cron.create("0 0 10 ? * * *", RfP, false);  //Každý den v 10h zavolej funkci RfP
 }
 
 //Funkce na posílání zprávy
