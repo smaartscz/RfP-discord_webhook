@@ -14,7 +14,7 @@ Rock For People Discord countdown
 #include "functions.h"
 #include <ArduinoOTA.h>
 //------------------Základní konfigurace------------------------//
-
+Discord_Webhook discord;
 const char* ntpServer = "pool.ntp.org";
 const long gmtOffset_sec = 3600;
 const int daylightOffset_sec = 3600;
