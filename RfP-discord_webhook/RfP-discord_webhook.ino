@@ -11,7 +11,7 @@ Rock For People Discord countdown
 #include <WiFi.h>
 #include <Discord_WebHook.h>
 #include "time.h"
-#include "functions.h"
+#include "settings.h"
 #include <ArduinoOTA.h>
 //------------------Základní konfigurace------------------------//
 Discord_Webhook discord;
@@ -38,7 +38,7 @@ void setup() {
   discord.begin(DISCORD_WEBHOOK);             // Inicializace discord webhooku
   discord.addWiFi(WiFi_ssid, WiFi_password);  // Nastavení WiFi
   discord.connectWiFi();                      // Připoj se k WiFi
-  discord.send("If you're 555, I'm 666:love_you_gesture::fire:");  // Pošli zprávu o zapnutí
+  discord.send("If you're 555, I'm 666:love_you_gesture::fire:[.](https://tenor.com/view/666-digital-numbers-digital-numbers-flashing-gif-5944997)");  // Pošli zprávu o zapnutí
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);  //Nastav NTP server
   time_t now;
   while ((now = time(nullptr)) == 0) {
@@ -46,7 +46,7 @@ void setup() {
     Serial.println("Čeká se na synchronizaci času...");
   }
   delay(2000);
-  ArduinoOTA.setHostname("RfP Webhook");
+  ArduinoOTA.setHostname("RfP_Webhook");
   ArduinoOTA
     .onStart([]() {
       String type;
@@ -72,7 +72,7 @@ void setup() {
       else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
       else if (error == OTA_END_ERROR) Serial.println("End Failed");
     });
-
+  ArduinoOTA. setPassword((const char *)"666");
   ArduinoOTA.begin();
 }
 
@@ -83,48 +83,47 @@ void RfP() {
   time_t Zbyva, RfPDate;
   RfPDate = 1718272800L;                 // 13.6.2024
   Zbyva = (RfPDate - unixTime) / 86400;  // Odecti momentalni unixTime od unix času RfP a vyděl to počtem sekund ve dni
-  Zbyva = 50;
   String message = "";
   Serial.print(message);
   switch (Zbyva) {
     case 300:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 300 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/300";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [300](https://media.discordapp.net/attachments/770062338564554798/954823564882739230/ezgif.com-gif-maker.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 250:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 250 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/250";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [250](https://cdn.discordapp.com/attachments/1064251020340899953/1125053321636483172/ezgif.com-video-to-gif_2.gif) dní!(<t:1718272800:R>):love_you_gesture::fire: ";
       break;
     case 200:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 200 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/200";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [200](https://media.discordapp.net/attachments/1064251020340899953/1125052433144487936/ezgif.com-video-to-gif_1.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 150:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 150 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/150";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [150](https://media.discordapp.net/attachments/1064251020340899953/1125052433144487936/ezgif.com-video-to-gif_1.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 100:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 100 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/100";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [100](https://media.tenor.com/icraL6qB5pcAAAAC/powerwolf-fire-and-forgive.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 50:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 50 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/50";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [50](https://tenor.com/view/lets-do-it-again-fuck-yeah-electric-callboy-gif-26329254) dní!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 31:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 31 dní!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/31";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [31](https://media.tenor.com/6SEu35ns1pwAAAAC/linkin-park.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 14:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za dva týdny!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/14";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [dva](https://media.tenor.com/rObe8p1aJgUAAAAC/slam-head-banger.gif) týdny!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 7:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za týden!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/7";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [týden](https://cdn.discordapp.com/attachments/1064251020340899953/1125051885703929876/ezgif.com-video-to-gif.gif)!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 3:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 3 dny!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/3";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [3](https://media.tenor.com/aBAuw7ALCBEAAAAC/slipknot-duality.gif) dny!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 2:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za 2 dny!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/2";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [2](https://media.tenor.com/LtXzSqzcK3MAAAAC/dovperestroika.gif) dny!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 1:
-      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za zííííííííítra!(<t:1718272800:R>):love_you_gesture::fire: https://rfp.smaarts.cz/1";
+      message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [zííííííííítra](https://media.tenor.com/gUUkhAnr5hcAAAAC/tenside-tensidemusic.gif)!(<t:1718272800:R>):love_you_gesture::fire:";
       break;
     case 0:
-      message = "PRÁVĚ TO VŠECHNO ZAČÍNÁ, <@&1121821428111646864>! ENJOY:love_you_gesture::fire: https://rfp.smaarts.cz/dnes";
+      message = "PRÁVĚ TO VŠECHNO ZAČÍNÁ, <@&1121821428111646864>! [ENJOY](https://media.tenor.com/BQo9mt76WsYAAAAC/slipknot-drums.gif):love_you_gesture::fire:";
       break;
     default:
       message = "Dobré poledne, <@&1121821428111646864> je za ";
@@ -144,9 +143,8 @@ void loop() {
     Serial.println("Nelze získat aktuální čas");
     return;
   }
-  if (timeinfo.tm_hour == 13 && timeinfo.tm_min == 25 && timeinfo.tm_sec == 0) {
+  if (timeinfo.tm_hour == 12 && timeinfo.tm_min == 00 && timeinfo.tm_sec == 0) {
     RfP();  //Trigger RfP funkci
   }
   ArduinoOTA.handle();
-  //RfP();
 }
