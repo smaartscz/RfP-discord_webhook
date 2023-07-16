@@ -3,3 +3,9 @@ RfP-discord_webhook/settings.h
 *.bin
 *.elf
 *.map
+*.d
+*.o
+*.a
+src/settings.h
+.pio/
+.vscode/
