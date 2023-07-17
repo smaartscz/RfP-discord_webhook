@@ -160,15 +160,16 @@ void RfP() {
 
 void manualRfP(String userID) {
   unixTime = getTime();
-  time_t Zbyva, RfPDate;
+  time_t zbyva, RfPDate;
   RfPDate = 1718272800L;                 // 13.6.2024
-  Zbyva = (RfPDate - unixTime) / 86400;  // Odecti momentalni unixTime od unix času RfP a vyděl to počtem sekund ve dni
-  String message = "Čau <@";
-  message += userID;
-  message += ">, Rock for people je za ";
-  message += Zbyva;
-  message += " dní(<t:1718272800:R>)";
-  message += ":love_you_gesture::fire:";
+  zbyva = (RfPDate - unixTime);  // Odecti momentalni unixTime od unix času RfP
+  // Vypocitej zbyvajici dny, hodiny a minuty
+  unsigned long days = zbyva / (24 * 60 * 60);
+  unsigned long remaining_seconds = zbyva % (24 * 60 * 60);
+  unsigned long hours = remaining_seconds / (60 * 60);
+  unsigned long remaining_minutes = remaining_seconds % (60 * 60);
+  unsigned long minutes = remaining_minutes / 60;
+  String message = "Čau <@" + userID + ">, Rock for people je za " + days + " dní, " + hours + " hodin a " + minutes + " minut:love_you_gesture::fire:";
   discord.send(message);  //Pošli zprávu na discord
 }
 
