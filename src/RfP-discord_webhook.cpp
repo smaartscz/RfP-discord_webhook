@@ -167,8 +167,8 @@ void manualRfP(String userID) {
   unsigned long days = zbyva / (24 * 60 * 60);
   unsigned long remaining_seconds = zbyva % (24 * 60 * 60);
   unsigned long hours = remaining_seconds / (60 * 60);
-  unsigned long remaining_minutes = remaining_seconds % (60 * 60);
-  unsigned long minutes = remaining_minutes / 60;
+  unsigned long remaining_minutes = (remaining_seconds % (60 * 60)) / 60; 
+  unsigned long minutes = remaining_minutes % 60;
   String message = "Čau <@" + userID + ">, Rock for people je za " + days + " dní, " + hours + " hodin a " + minutes + " minut:love_you_gesture::fire:";
   discord.send(message);  //Pošli zprávu na discord
 }
