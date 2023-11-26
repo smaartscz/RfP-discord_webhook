@@ -32,6 +32,7 @@ void handleRfPRequest(AsyncWebServerRequest *request)
   if (request->hasParam("id"))
   {
     String id = request->getParam("id")->value();
+    timeClient.update();
     manualRfP(id, timeClient.getEpochTime());
     request->send(200, "text/plain", "Request received");
   }
@@ -51,7 +52,7 @@ void loop() {
 unsigned long currentTime = time(nullptr);
 timeClient.update();
   // Check if it's time to run the function at 12 pm (12:00:00)
-  if (timeClient.getHours() == 15 && timeClient.getMinutes() == 15 && timeClient.getSeconds() == 0) {
+  if (timeClient.getHours() == 12 && timeClient.getMinutes() == 00 && timeClient.getSeconds() == 0) {
     RfP(timeClient.getEpochTime());  // Call your function
     delay(1000);  // Avoid repeated calls during the same second
   }
