@@ -1,9 +1,10 @@
 #include "settings.h"
+#include "mqtt/mqtt_topics.h"
 Discord_Webhook discord;
 AsyncWebServer server(80);
+AsyncMqttClient mqttClient;
 
-void setupWifi()
-{
+void setupWifi(){
     discord.begin(DISCORD_WEBHOOK);            // Inicializace discord webhooku
     discord.addWiFi(WiFi_ssid, WiFi_password); // Nastavení WiFi
     discord.connectWiFi();
@@ -85,7 +86,7 @@ void manualRfP(String userID, unsigned long unixTime)
 
 void setupOTA()
 {
-    ArduinoOTA.setHostname("RfP-Webhook");
+    ArduinoOTA.setHostname("ESP32_RfP");
     ArduinoOTA
         .onStart([]()
                  {
@@ -154,4 +155,56 @@ void setupWebServer(){
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
             { handleRequest(request); });                   
   WebSerial.println("Server started");
+}
+
+void onMqttConnect(bool sessionPresent) {
+  Serial.println("Connected to MQTT.");
+  Serial.print("Session present: ");
+  Serial.println(sessionPresent);
+  uint16_t packetIdSub = mqttClient.subscribe("RfP/status", 2);
+  uint16_t packetIdSub1 = mqttClient.subscribe("RfP/crrTime", 2);
+  uint16_t packetIdSub2 = mqttClient.subscribe("RfP/unixTime", 2);
+  mqttClient.publish("homeassistant/sensor/RfP/currTime/config", 0, true, currTime_auto);
+  mqttClient.publish("homeassistant/sensor/RfP/unixTime/config", 0, true, unixTime_auto);
+}
+
+void connectToMqtt() {
+  Serial.println("Connecting to MQTT...");
+  mqttClient.connect();
+}
+
+void onMqttDisconnect(AsyncMqttClientDisconnectReason reason) {
+  Serial.println("Disconnected from MQTT.");
+  doOnce = false;
+  if (reason == AsyncMqttClientDisconnectReason::TLS_BAD_FINGERPRINT) {
+    Serial.println("Bad server fingerprint.");
+  }
+
+  if (WiFi.isConnected() && doOnce == false) {
+    connectToMqtt();
+    doOnce = true;
+  }
+}
+
+void onMqttPublish(uint16_t packetId) {
+  Serial.println("Publish acknowledged.");
+  Serial.print("  packetId: ");
+  Serial.println(packetId);
+}
+
+void setupMQTT(){
+  mqttClient.onConnect(onMqttConnect);
+  mqttClient.onDisconnect(onMqttDisconnect);
+  mqttClient.onPublish(onMqttPublish);
+  mqttClient.setServer(mqtt_server, mqtt_port);
+  mqttClient.setCredentials(mqtt_user, mqtt_password);
+  mqttClient.connect();
+}
+
+void sendTime(String currTime, unsigned long unixTime){
+  String sunixTime = String(unixTime);
+  const char *cunixTime =sunixTime.c_str();
+  const char *ccurrTime =currTime.c_str();
+  mqttClient.publish("RfP/currTime", 0, true, ccurrTime);
+  mqttClient.publish("RfP/unixTime", 0, true, cunixTime);
 }

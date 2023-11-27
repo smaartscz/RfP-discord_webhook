@@ -24,7 +24,9 @@ void syncTime() {
 
   Serial.println("Time synced successfully");
   Serial.println("Current time: ");
-  Serial.print(timeClient.getEpochTime());
+  Serial.println(timeClient.getEpochTime());
+  String currTime = String(timeClient.getHours()) + String(timeClient.getMinutes());
+  sendTime(currTime, timeClient.getEpochTime());
 }
 
 void handleRfPRequest(AsyncWebServerRequest *request)
@@ -46,6 +48,7 @@ void setup() {
   syncTime();
   setupOTA();
   setupWebServer();
+  setupMQTT();
 }
 
 void loop() {
@@ -62,5 +65,5 @@ timeClient.update();
     syncTime();
     lastSyncTime = currentTime;
   }
-
+  ArduinoOTA.handle();
 }
