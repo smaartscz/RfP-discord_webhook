@@ -14,7 +14,7 @@ void setupWifi(){
 void RfP(unsigned long unixTime)
 {
     time_t Zbyva, RfPDate;
-    RfPDate = 1718272800L;                // 13.6.2024
+    RfPDate = 1718186400L;                // 12.6.2024
     Zbyva = (RfPDate - unixTime) / 86400; // Odecti momentalni unixTime od unix času RfP a vyděl to počtem sekund ve dni
     String message = "";
     switch (Zbyva)
