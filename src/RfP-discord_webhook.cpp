@@ -55,11 +55,15 @@ void loop() {
 unsigned long currentTime = time(nullptr);
 timeClient.update();
   // Check if it's time to run the function at 12 pm (12:00:00)
-  if (timeClient.getHours() == 12 && timeClient.getMinutes() == 00 && timeClient.getSeconds() == 0) {
+  if (timeClient.getHours() == 12 && timeClient.getMinutes() == 00 && sentRfP == false) {
     RfP(timeClient.getEpochTime());  // Call your function
+    sentRfP = true;
     delay(1000);  // Avoid repeated calls during the same second
-  }
 
+  }
+if (timeClient.getHours() == 12 && timeClient.getMinutes() >= 01 && sentRfP == true) {
+  sentRfP = false;
+  }
   // Check if it's time to sync with NTP server
   if (currentTime - lastSyncTime >= syncInterval) {
     syncTime();
