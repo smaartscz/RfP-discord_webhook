@@ -52,7 +52,6 @@ void setup() {
 }
 
 void loop() {
-unsigned long currentTime = time(nullptr);
 timeClient.update();
   // Check if it's time to run the function at 12 pm (12:00:00)
   if (timeClient.getHours() == 12 && timeClient.getMinutes() == 00 && sentRfP == false) {

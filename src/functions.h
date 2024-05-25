@@ -8,52 +8,55 @@ void setupWifi(){
     discord.begin(DISCORD_WEBHOOK);            // Inicializace discord webhooku
     discord.addWiFi(WiFi_ssid, WiFi_password); // Nastavení WiFi
     discord.connectWiFi();
-    discord.send("If you're 555, I'm 666:love_you_gesture::fire:[.](https://tenor.com/view/666-digital-numbers-digital-numbers-flashing-gif-5944997)");
+    discord.send("🎶Ah, ha, ha, ha, stayin' alive, stayin' alive🎶, but if you're 555, I'm 666:love_you_gesture::fire:[.](https://tenor.com/view/666-digital-numbers-digital-numbers-flashing-gif-5944997)");
 }
 
 void RfP(unsigned long unixTime)
 {
-    time_t Zbyva, RfPDate;
-    RfPDate = 1718186400L;                // 12.6.2024
-    Zbyva = (RfPDate - unixTime) / 86400; // Odecti momentalni unixTime od unix času RfP a vyděl to počtem sekund ve dni
+    time_t RfPDate;
+    float fZbyva;
+    int Zbyva;
+    RfPDate = 1718186400L;                   // 12.6.2024
+    fZbyva = (RfPDate - unixTime) / 86400.0; // Odecti momentalni unixTime od unix času RfP a vyděl to počtem sekund ve dni
+    Zbyva = ceil(fZbyva);
     String message = "";
     switch (Zbyva)
     {
     case 300: // Kaja
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**300**](https://media.discordapp.net/attachments/770062338564554798/954823564882739230/ezgif.com-gif-maker.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**300**](https://media.discordapp.net/attachments/770062338564554798/954823564882739230/ezgif.com-gif-maker.gif) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 250: // Kaja2
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**250**](https://cdn.discordapp.com/attachments/1064251020340899953/1125053321636483172/ezgif.com-video-to-gif_2.gif) dní!(<t:1718272800:R>):love_you_gesture::fire: ";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**250**](https://cdn.discordapp.com/attachments/1064251020340899953/1125053321636483172/ezgif.com-video-to-gif_2.gif) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire: ";
         break;
     case 200: // BMTH
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**200**](https://giphy.com/gifs/concert-bring-me-the-horizon-oliver-sykes-3sXu3d4qnRkI) dní!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**200**](https://giphy.com/gifs/concert-bring-me-the-horizon-oliver-sykes-3sXu3d4qnRkI) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 150: // Corey Taylor
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**150**](https://tenor.com/view/corey-taylor-skull-slasher-relax-gif-14853047) dní!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**150**](https://tenor.com/view/corey-taylor-skull-slasher-relax-gif-14853047) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 100: // PowerWolf
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**100**](https://media.tenor.com/icraL6qB5pcAAAAC/powerwolf-fire-and-forgive.gif) dní!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**100**](https://media.tenor.com/icraL6qB5pcAAAAC/powerwolf-fire-and-forgive.gif) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 50: // Electric Callboy
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**50**](https://tenor.com/view/lets-do-it-again-fuck-yeah-electric-callboy-gif-26329254) dní!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**50**](https://tenor.com/view/lets-do-it-again-fuck-yeah-electric-callboy-gif-26329254) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 31: // Crystal Lake
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**31**](https://media.discordapp.net/attachments/1064251020340899953/1170720269556535336/Crystal_Lake_Curse.gif?ex=655a1137&is=65479c37&hm=aeadafdbb1a4f32ae08610a93d752ea557d167954e7e7826ef5cd0687a7a21de&=) dní!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**31**](https://tenor.com/view/crystal-lake-apollo-music-video-gif-24063989) dní! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
-    case 14: // Moshpit
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**dva**](https://tenor.com/view/avril-lavigne-%EC%97%90%EC%9D%B4%EB%B8%8C%EB%A6%B4-%EB%9D%BC%EB%B9%88-gif-7558323830048710247) týdny!(<t:1718272800:R>):love_you_gesture::fire:";
+    case 14: // Avril Lavigne
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**dva týdny**](https://tenor.com/view/avril-lavigne-%EC%97%90%EC%9D%B4%EB%B8%8C%EB%A6%B4-%EB%9D%BC%EB%B9%88-gif-7558323830048710247) týdny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
-    case 7: // RFP 2023
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**týden**](https://cdn.discordapp.com/attachments/1064251020340899953/1125051885703929876/ezgif.com-video-to-gif.gif)!(<t:1718272800:R>):love_you_gesture::fire:";
+    case 7: // Coldrain
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**týden**](https://media1.tenor.com/m/e_vIH7pm_DAAAAAd/one-ok-rock-35xxxv-doc.gif)! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 3: // Slipknot
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**3**](https://media.tenor.com/aBAuw7ALCBEAAAAC/slipknot-duality.gif) dny!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**3**](https://media.tenor.com/aBAuw7ALCBEAAAAC/slipknot-duality.gif) dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 2: // Rammstein
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**2**](https://media.tenor.com/LtXzSqzcK3MAAAAC/dovperestroika.gif) dny!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**2**](https://media.tenor.com/LtXzSqzcK3MAAAAC/dovperestroika.gif) dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 1: // Architects
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**zííííííííítra**](https://media.tenor.com/gUUkhAnr5hcAAAAC/tenside-tensidemusic.gif)!(<t:1718272800:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**zííííííííítra**](https://media.tenor.com/gUUkhAnr5hcAAAAC/tenside-tensidemusic.gif)! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 0: // Slipknot headbang
         message = "PRÁVĚ TO VŠECHNO ZAČÍNÁ, <@&1121821428111646864>! [**ENJOY**](https://media.tenor.com/BQo9mt76WsYAAAAC/slipknot-drums.gif):love_you_gesture::fire:";
@@ -62,7 +65,7 @@ void RfP(unsigned long unixTime)
         message = "Dobré poledne, <@&1121821428111646864> je za ";
         message += Zbyva;
         message += " dní";
-        message += "(<t:1718272800:R>)";
+        message += " (Přesněji za: <t:1718186400:R>)";
         message += ":love_you_gesture::fire:";
         break;
     }
