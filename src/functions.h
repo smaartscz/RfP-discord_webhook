@@ -47,26 +47,29 @@ void RfP(unsigned long unixTime)
         message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**dva týdny**](https://tenor.com/view/avril-lavigne-%EC%97%90%EC%9D%B4%EB%B8%8C%EB%A6%B4-%EB%9D%BC%EB%B9%88-gif-7558323830048710247) týdny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
         break;
     case 7: // Coldrain
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**týden**](https://media1.tenor.com/m/e_vIH7pm_DAAAAAd/one-ok-rock-35xxxv-doc.gif)! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za **týden** https://media1.tenor.com/m/e_vIH7pm_DAAAAAd/one-ok-rock-35xxxv-doc.gif! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
+        break;
+    case 4: //Gutalax
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za **4** dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire: [.](https://media1.tenor.com/m/WjmHMzsl2DEAAAAd/toi-toi-gutalax.gif)";
         break;
     case 3: // Slipknot
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**3**](https://media.tenor.com/aBAuw7ALCBEAAAAC/slipknot-duality.gif) dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za **3** dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire: [.](https://media.tenor.com/aBAuw7ALCBEAAAAC/slipknot-duality.gif)";
         break;
     case 2: // Rammstein
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**2**](https://media.tenor.com/LtXzSqzcK3MAAAAC/dovperestroika.gif) dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za **2** dny! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire: [.](https://media.tenor.com/LtXzSqzcK3MAAAAC/dovperestroika.gif)";
         break;
     case 1: // Architects
-        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za [**zííííííííítra**](https://media.tenor.com/gUUkhAnr5hcAAAAC/tenside-tensidemusic.gif)! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire:";
+        message = "Dobré FUCKIN poledne, <@&1121821428111646864> je za **zííííííííítra**! (Přesněji za: <t:1718186400:R>):love_you_gesture::fire: [.](https://media.tenor.com/gUUkhAnr5hcAAAAC/tenside-tensidemusic.gif)";
         break;
     case 0: // Slipknot headbang
-        message = "PRÁVĚ TO VŠECHNO ZAČÍNÁ, <@&1121821428111646864>! [**ENJOY**](https://media.tenor.com/BQo9mt76WsYAAAAC/slipknot-drums.gif):love_you_gesture::fire:";
+        message = "PRÁVĚ TO VŠECHNO ZAČÍNÁ, <@&1121821428111646864>! **ENJOY**:love_you_gesture::fire: ||Jo a za 5 minut začíná Gutalax <:Kappa:798869995030970409>||[.](https://media.tenor.com/BQo9mt76WsYAAAAC/slipknot-drums.gif)";
         break;
     default:
         message = "Dobré poledne, <@&1121821428111646864> je za ";
         message += Zbyva;
         message += " dní";
         message += " (Přesněji za: <t:1718186400:R>)";
-        message += ":love_you_gesture::fire:";
+        message += ":love_you_gesture::fire: ||A je čas na obídek <:standaJoke:803355181692485744>||";
         break;
     }
     discord.send(message); // Pošli zprávu na discord
@@ -75,7 +78,7 @@ void RfP(unsigned long unixTime)
 void manualRfP(String userID, unsigned long unixTime)
 {
   time_t zbyva, RfPDate;
-  RfPDate = 1718272800L;        // 13.6.2024
+  RfPDate = 1718272800L;        // 12.6.2024
   zbyva = (RfPDate - unixTime); // Odecti momentalni unixTime od unix času RfP
   // Vypocitej zbyvajici dny, hodiny a minuty
   unsigned long days = zbyva / (24 * 60 * 60);
